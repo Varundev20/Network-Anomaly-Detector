@@ -4,7 +4,7 @@ A local-first network alert investigator: transparent rules detect unusual traff
 and a small open-weight model running on your own laptop explains each alert using
 read-only analysis tools. No cloud AI, no data leaves the machine.
 
-**Track:** Narrow Agentic Tools | **Team:** _[team name + members]_ | **Event:** Hack Day Jaipur 2026
+**Track:** Narrow Agentic Tools | **Team:** _[Node Sentinel: Gaurvanshi Jain, Lakshmi Upadhyay, Shreyan Dhar, Varun Rastogi]_ | **Event:** Hack Day Jaipur 2026
 
 ---
 
@@ -94,7 +94,7 @@ Thresholds are demo settings chosen from benign traffic in this dataset, not uni
 5. *Accuracy* tab → precision/recall against the dataset's labels.
 6. `benign_sample.csv` → 0 alerts.
 
-_[Demo video / screenshots link]_
+_[https://drive.google.com/drive/folders/1YmuTX2CVNmCOSwaZUO3qrkxYQlFv_dPC?usp=sharing]_
 
 ## Model details
 
@@ -227,7 +227,7 @@ Full logs: [`results/repeat_runs.md`](results/repeat_runs.md) (port scan) and
 
 ## Graphify integration
 
-Graph: [`graphify-out/graph.html`](graphify-out/graph.html) | Shared in Discord: _[yes/no]_
+Graph: Shared in Discord: _[yes]_
 
 ```powershell
 graphify extract . --code-only
