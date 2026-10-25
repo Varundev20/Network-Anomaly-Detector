@@ -1,0 +1,13 @@
+# Node Sentinel dark theme (used when you run `streamlit run frontend/app.py` from the repository root)
+[theme]
+base = "dark"
+primaryColor = "#378ADD"
+backgroundColor = "#0F1218"
+secondaryBackgroundColor = "#1B1F27"
+textColor = "#ECEAE4"
+
+[client]
+toolbarMode = "minimal"
+
+[browser]
+gatherUsageStats = false
