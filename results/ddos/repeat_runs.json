@@ -1,0 +1,493 @@
+{
+  "meta": {
+    "generated_at": "2026-10-24T17:31:22",
+    "dataset": "ddos_sample.csv",
+    "model": "qwen3:1.7b",
+    "runtime": "Ollama",
+    "options": {
+      "temperature": 0,
+      "seed": 42,
+      "num_ctx": 8192
+    },
+    "machine": {
+      "os": "Windows-11-10.0.26300-SP0",
+      "cpu": "Intel64 Family 6 Model 170 Stepping 4, GenuineIntel"
+    }
+  },
+  "runs": [
+    {
+      "run": 1,
+      "alerts_detected": 1,
+      "alert": {
+        "rule_name": "connection_burst",
+        "source": "172.16.0.1",
+        "measured_value": 8244,
+        "threshold": 3000,
+        "window_start": "2017-07-07T15:57:00",
+        "window_end": "2017-07-07T16:00:00"
+      },
+      "investigation": {
+        "alert_id": 1,
+        "model": "qwen3:1.7b",
+        "status": "ok",
+        "report": {
+          "summary": "The alert indicates a significant number of network flows (21,427) originating from a single source (172.16.0.1) to a single destination (192.168.10.50) within 60 seconds. The flows show a peak of 8,244 in the first 60 seconds, followed by a decline. The traffic appears to be highly concentrated, with most of the traffic occurring in the first 60 seconds. The traffic is mostly TCP, with a median of 3 forward packets and 5 backward packets per flow. The traffic is not consistent with normal network behavior, and there is a high likelihood of it being a scan or a flood.",
+          "observed_evidence": [
+            "21,427 flows in total",
+            "8,244 flows in the first 60 seconds",
+            "194 other sources active in the same window",
+            "Median flow duration of 1,547.91 ms",
+            "Median forward packets of 3.0",
+            "Median backward packets of 5.0",
+            "32.1% of flows have no reply packets",
+            "1.0 flows per minute from other sources"
+          ],
+          "possible_explanations": [
+            "A vulnerability scan or inventory tool targeting a single service port (e.g., port 80) with a high number of flows",
+            "A denial-of-service (DoS) attack using a flood technique, with the traffic concentrated in the first 60 seconds"
+          ],
+          "confidence": "medium",
+          "uncertainty": "The traffic is highly concentrated, but it is unclear whether the traffic is benign or malicious. The traffic could be a scan, a flood, or a misbehaving client retrying.",
+          "recommended_checks": [
+            "Check the source IP address for any known malicious activity",
+            "Verify the destination IP address and port for any known malicious activity",
+            "Check the traffic for any anomalies or patterns that could indicate a DoS attack",
+            "Monitor the traffic for any unusual patterns or spikes"
+          ],
+          "missing_information": [
+            "The exact nature of the traffic (e.g., whether it is a scan, flood, or misbehaving client retrying)",
+            "The exact source of the traffic (e.g., whether it is a known malicious IP or a misbehaving client)",
+            "The exact destination of the traffic (e.g., whether it is a known malicious IP or a legitimate service port)"
+          ]
+        },
+        "tool_calls": [
+          {
+            "name": "get_alert_details",
+            "arguments": {
+              "alert_id": 1
+            },
+            "result": {
+              "alert_id": 1,
+              "rule_name": "connection_burst",
+              "rule_description": "More than 3000 network flows started by one source within 60 seconds.",
+              "source_ip": "172.16.0.1",
+              "window_start": "2017-07-07T15:57:00",
+              "window_end": "2017-07-07T16:00:00",
+              "window_seconds": 60,
+              "windows_triggered": 3,
+              "metric": "flow_count",
+              "peak_value": 8244,
+              "threshold": 3000,
+              "times_over_threshold": 2.7,
+              "value_per_window": [
+                {
+                  "window_start": "2017-07-07T15:57:00",
+                  "value": 8244
+                },
+                {
+                  "window_start": "2017-07-07T15:58:00",
+                  "value": 6576
+                },
+                {
+                  "window_start": "2017-07-07T15:59:00",
+                  "value": 6607
+                }
+              ],
+              "total_flows_in_alert": 21427,
+              "severity_label": "medium"
+            },
+            "requested_by": "model"
+          },
+          {
+            "name": "count_distinct_ports",
+            "arguments": {
+              "alert_id": 1
+            },
+            "result": {
+              "alert_id": 1,
+              "flows_examined": 21427,
+              "distinct_destination_ports": 1,
+              "distinct_service_ports_below_1024": 1,
+              "lowest_port": 80,
+              "highest_port": 80,
+              "top_ports": [
+                {
+                  "port": 80,
+                  "flows": 21427
+                }
+              ],
+              "distinct_destination_hosts": 1,
+              "top_destination_hosts": [
+                {
+                  "ip": "192.168.10.50",
+                  "flows": 21427
+                }
+              ]
+            },
+            "requested_by": "model"
+          },
+          {
+            "name": "summarize_time_window",
+            "arguments": {
+              "alert_id": 1
+            },
+            "result": {
+              "alert_id": 1,
+              "flows": 21427,
+              "flows_per_60s_window": [
+                {
+                  "window_start": "2017-07-07T15:57:00",
+                  "flows": 8244
+                },
+                {
+                  "window_start": "2017-07-07T15:58:00",
+                  "flows": 6576
+                },
+                {
+                  "window_start": "2017-07-07T15:59:00",
+                  "flows": 6607
+                }
+              ],
+              "protocol_share": {
+                "TCP": 1.0
+              },
+              "median_flow_duration_ms": 1547.91,
+              "median_forward_packets": 3.0,
+              "median_backward_packets": 5.0,
+              "share_of_flows_with_no_reply_packets": 0.321,
+              "share_of_flows_with_at_most_2_forward_packets": 0.015,
+              "other_sources_active_in_same_windows": 194,
+              "other_sources_median_flows_per_minute": 1.0,
+              "other_sources_max_flows_per_minute": 1516
+            },
+            "requested_by": "model"
+          }
+        ],
+        "warnings": [],
+        "duration_seconds": 52.3,
+        "tokens_generated": 614,
+        "tokens_per_second": 18.5,
+        "error": null,
+        "started_at": "2026-10-24T17:28:53",
+        "investigation_id": null
+      }
+    },
+    {
+      "run": 2,
+      "alerts_detected": 1,
+      "alert": {
+        "rule_name": "connection_burst",
+        "source": "172.16.0.1",
+        "measured_value": 8244,
+        "threshold": 3000,
+        "window_start": "2017-07-07T15:57:00",
+        "window_end": "2017-07-07T16:00:00"
+      },
+      "investigation": {
+        "alert_id": 2,
+        "model": "qwen3:1.7b",
+        "status": "ok",
+        "report": {
+          "summary": "The alert indicates a significant number of network flows (21,427) originating from a single source (172.16.0.1) to a single destination port (80) within 60 seconds. The flow rate exceeds the threshold of 3,000 flows per minute, suggesting potential scanning or service discovery activity. The flows are characterized by short durations and low packet counts, which are typically associated with probing or connection attempts.",
+          "observed_evidence": [
+            "21,427 flows in total",
+            "8,244 flows in the first 60 seconds",
+            "6,576 flows in the second 60 seconds",
+            "6,607 flows in the third 60 seconds",
+            "Single destination port (80)",
+            "Single source IP (172.16.0.1)",
+            "Median flow duration: 1,547.91 ms",
+            "Median forward packets: 3.0",
+            "Median backward packets: 5.0",
+            "32.1% of flows have no reply packets",
+            "194 other sources active in the same window",
+            "Other sources median flows per minute: 1.0"
+          ],
+          "possible_explanations": [
+            "A vulnerability scan or authorized inventory tool accessing a single service (e.g., HTTP) on a single port.",
+            "A denial-of-service (DoS) flood targeting a specific service (e.g., HTTP) from a single source, possibly due to a misbehaving client or a misconfigured server."
+          ],
+          "confidence": "medium",
+          "uncertainty": "The alert could be due to a benign activity, such as a vulnerability scan, or a malicious attempt, such as a DoS flood. The evidence is consistent with both scenarios, making it difficult to determine the exact cause.",
+          "recommended_checks": [
+            "Verify the source IP and destination port to confirm if it is authorized or if it is a potential threat.",
+            "Check the traffic pattern and duration to confirm if it is a normal connection attempt or a DoS flood.",
+            "Review the traffic logs for any additional patterns or anomalies.",
+            "Monitor the traffic for any unusual behavior or patterns that could indicate a threat."
+          ],
+          "missing_information": [
+            "The exact nature of the traffic (e.g., whether it is a vulnerability scan or a DoS flood)",
+            "The source IP and destination IP for further analysis",
+            "The exact service or protocol being used (e.g., HTTP, FTP, etc.)",
+            "The duration of the traffic beyond the 60-second window"
+          ]
+        },
+        "tool_calls": [
+          {
+            "name": "get_alert_details",
+            "arguments": {
+              "alert_id": 2
+            },
+            "result": {
+              "alert_id": 2,
+              "rule_name": "connection_burst",
+              "rule_description": "More than 3000 network flows started by one source within 60 seconds.",
+              "source_ip": "172.16.0.1",
+              "window_start": "2017-07-07T15:57:00",
+              "window_end": "2017-07-07T16:00:00",
+              "window_seconds": 60,
+              "windows_triggered": 3,
+              "metric": "flow_count",
+              "peak_value": 8244,
+              "threshold": 3000,
+              "times_over_threshold": 2.7,
+              "value_per_window": [
+                {
+                  "window_start": "2017-07-07T15:57:00",
+                  "value": 8244
+                },
+                {
+                  "window_start": "2017-07-07T15:58:00",
+                  "value": 6576
+                },
+                {
+                  "window_start": "2017-07-07T15:59:00",
+                  "value": 6607
+                }
+              ],
+              "total_flows_in_alert": 21427,
+              "severity_label": "medium"
+            },
+            "requested_by": "model"
+          },
+          {
+            "name": "count_distinct_ports",
+            "arguments": {
+              "alert_id": 2
+            },
+            "result": {
+              "alert_id": 2,
+              "flows_examined": 21427,
+              "distinct_destination_ports": 1,
+              "distinct_service_ports_below_1024": 1,
+              "lowest_port": 80,
+              "highest_port": 80,
+              "top_ports": [
+                {
+                  "port": 80,
+                  "flows": 21427
+                }
+              ],
+              "distinct_destination_hosts": 1,
+              "top_destination_hosts": [
+                {
+                  "ip": "192.168.10.50",
+                  "flows": 21427
+                }
+              ]
+            },
+            "requested_by": "model"
+          },
+          {
+            "name": "summarize_time_window",
+            "arguments": {
+              "alert_id": 2
+            },
+            "result": {
+              "alert_id": 2,
+              "flows": 21427,
+              "flows_per_60s_window": [
+                {
+                  "window_start": "2017-07-07T15:57:00",
+                  "flows": 8244
+                },
+                {
+                  "window_start": "2017-07-07T15:58:00",
+                  "flows": 6576
+                },
+                {
+                  "window_start": "2017-07-07T15:59:00",
+                  "flows": 6607
+                }
+              ],
+              "protocol_share": {
+                "TCP": 1.0
+              },
+              "median_flow_duration_ms": 1547.91,
+              "median_forward_packets": 3.0,
+              "median_backward_packets": 5.0,
+              "share_of_flows_with_no_reply_packets": 0.321,
+              "share_of_flows_with_at_most_2_forward_packets": 0.015,
+              "other_sources_active_in_same_windows": 194,
+              "other_sources_median_flows_per_minute": 1.0,
+              "other_sources_max_flows_per_minute": 1516
+            },
+            "requested_by": "model"
+          }
+        ],
+        "warnings": [],
+        "duration_seconds": 51.5,
+        "tokens_generated": 643,
+        "tokens_per_second": 19.6,
+        "error": null,
+        "started_at": "2026-10-24T17:29:48",
+        "investigation_id": null
+      }
+    },
+    {
+      "run": 3,
+      "alerts_detected": 1,
+      "alert": {
+        "rule_name": "connection_burst",
+        "source": "172.16.0.1",
+        "measured_value": 8244,
+        "threshold": 3000,
+        "window_start": "2017-07-07T15:57:00",
+        "window_end": "2017-07-07T16:00:00"
+      },
+      "investigation": {
+        "alert_id": 3,
+        "model": "qwen3:1.7b",
+        "status": "ok",
+        "report": {
+          "summary": "The alert indicates a significant number of network flows (21,427) originating from a single source within a 60-second window. The flows are concentrated on a single destination port (80), and the rate of flows exceeds the threshold of 3,000. The traffic appears to be unusual, as it involves a large number of flows per minute from a single source to a single destination port.",
+          "observed_evidence": [
+            "21,427 flows in total",
+            "8,244 flows in the first 60 seconds",
+            "6,576 flows in the next 15 seconds",
+            "6,607 flows in the final 15 seconds",
+            "Single destination port (80)",
+            "Single destination host (192.168.10.50)",
+            "Traffic from a single source IP (172.16.0.1)"
+          ],
+          "possible_explanations": [
+            "A large-scale vulnerability scan or service discovery process, where multiple services are being probed and authorized.",
+            "A denial-of-service (DoS) attack, possibly due to a misbehaving client or a botnet, causing a flood of traffic to a single service port."
+          ],
+          "confidence": "medium",
+          "uncertainty": "The traffic could be benign, but the high volume of flows is unusual and warrants further investigation.",
+          "recommended_checks": [
+            "Verify the source IP and destination IP to ensure they are legitimate.",
+            "Check the destination port (80) to confirm it is a legitimate service port.",
+            "Review the traffic patterns over a longer period to confirm the traffic is not part of a known attack."
+          ],
+          "missing_information": [
+            "The exact nature of the traffic (e.g., whether it is a legitimate service or a DoS attack).",
+            "The source of the traffic (e.g., whether it is a known malicious IP or a legitimate client).",
+            "The duration of the traffic and whether it is part of a known pattern."
+          ]
+        },
+        "tool_calls": [
+          {
+            "name": "get_alert_details",
+            "arguments": {
+              "alert_id": 3
+            },
+            "result": {
+              "alert_id": 3,
+              "rule_name": "connection_burst",
+              "rule_description": "More than 3000 network flows started by one source within 60 seconds.",
+              "source_ip": "172.16.0.1",
+              "window_start": "2017-07-07T15:57:00",
+              "window_end": "2017-07-07T16:00:00",
+              "window_seconds": 60,
+              "windows_triggered": 3,
+              "metric": "flow_count",
+              "peak_value": 8244,
+              "threshold": 3000,
+              "times_over_threshold": 2.7,
+              "value_per_window": [
+                {
+                  "window_start": "2017-07-07T15:57:00",
+                  "value": 8244
+                },
+                {
+                  "window_start": "2017-07-07T15:58:00",
+                  "value": 6576
+                },
+                {
+                  "window_start": "2017-07-07T15:59:00",
+                  "value": 6607
+                }
+              ],
+              "total_flows_in_alert": 21427,
+              "severity_label": "medium"
+            },
+            "requested_by": "model"
+          },
+          {
+            "name": "count_distinct_ports",
+            "arguments": {
+              "alert_id": 3
+            },
+            "result": {
+              "alert_id": 3,
+              "flows_examined": 21427,
+              "distinct_destination_ports": 1,
+              "distinct_service_ports_below_1024": 1,
+              "lowest_port": 80,
+              "highest_port": 80,
+              "top_ports": [
+                {
+                  "port": 80,
+                  "flows": 21427
+                }
+              ],
+              "distinct_destination_hosts": 1,
+              "top_destination_hosts": [
+                {
+                  "ip": "192.168.10.50",
+                  "flows": 21427
+                }
+              ]
+            },
+            "requested_by": "model"
+          },
+          {
+            "name": "summarize_time_window",
+            "arguments": {
+              "alert_id": 3
+            },
+            "result": {
+              "alert_id": 3,
+              "flows": 21427,
+              "flows_per_60s_window": [
+                {
+                  "window_start": "2017-07-07T15:57:00",
+                  "flows": 8244
+                },
+                {
+                  "window_start": "2017-07-07T15:58:00",
+                  "flows": 6576
+                },
+                {
+                  "window_start": "2017-07-07T15:59:00",
+                  "flows": 6607
+                }
+              ],
+              "protocol_share": {
+                "TCP": 1.0
+              },
+              "median_flow_duration_ms": 1547.91,
+              "median_forward_packets": 3.0,
+              "median_backward_packets": 5.0,
+              "share_of_flows_with_no_reply_packets": 0.321,
+              "share_of_flows_with_at_most_2_forward_packets": 0.015,
+              "other_sources_active_in_same_windows": 194,
+              "other_sources_median_flows_per_minute": 1.0,
+              "other_sources_max_flows_per_minute": 1516
+            },
+            "requested_by": "model"
+          }
+        ],
+        "warnings": [],
+        "duration_seconds": 41.0,
+        "tokens_generated": 519,
+        "tokens_per_second": 20.1,
+        "error": null,
+        "started_at": "2026-10-24T17:30:41",
+        "investigation_id": null
+      }
+    }
+  ]
+}
