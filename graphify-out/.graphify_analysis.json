@@ -1,0 +1,356 @@
+{
+  "communities": {
+    "0": [
+      "agent_init",
+      "agent_init_rationale_1",
+      "agent_investigator",
+      "agent_investigator_chat",
+      "agent_investigator_clean",
+      "agent_investigator_fallback_report",
+      "agent_investigator_investigate",
+      "agent_investigator_investigate_count_tokens",
+      "agent_investigator_investigate_run",
+      "agent_investigator_modelunavailable",
+      "agent_investigator_numbers_in",
+      "agent_investigator_ollama_status",
+      "agent_investigator_py_any",
+      "agent_investigator_rationale_1",
+      "agent_investigator_rationale_125",
+      "agent_investigator_rationale_168",
+      "agent_investigator_rationale_220",
+      "agent_investigator_rationale_88",
+      "agent_investigator_validate_report",
+      "backend_models",
+      "backend_models_alert_to_dict",
+      "backend_models_investigation",
+      "backend_models_investigation_to_dict",
+      "backend_models_py_any",
+      "backend_models_rationale_1",
+      "backend_models_toolcall",
+      "dataclasses",
+      "re",
+      "requests",
+      "runtimeerror",
+      "tests_test_investigator",
+      "tests_test_investigator_test_agent_loop_runs_requested_tools",
+      "tests_test_investigator_test_app_supplies_details_when_model_skips_tools",
+      "tests_test_investigator_test_invented_numbers_are_flagged",
+      "tests_test_investigator_test_missing_fields_and_bad_confidence_fail",
+      "tests_test_investigator_test_overconfident_wording_fails_but_negation_is_fine",
+      "tests_test_investigator_test_progress_callback_sees_every_tool_call",
+      "tests_test_investigator_test_rejected_report_is_retried_then_falls_back",
+      "tests_test_investigator_test_shares_quoted_as_percentages_are_grounded",
+      "tests_test_investigator_test_unreachable_model_gives_fallback_report",
+      "tests_test_investigator_test_valid_report_passes",
+      "time",
+      "typing"
+    ],
+    "1": [
+      "backend_evaluation",
+      "backend_evaluation_evaluate",
+      "backend_evaluation_in_alert",
+      "backend_evaluation_py_dataframe",
+      "backend_evaluation_py_series",
+      "backend_evaluation_rationale_1",
+      "backend_models_alert",
+      "backend_storage",
+      "backend_storage_connect",
+      "backend_storage_flow_count",
+      "backend_storage_flows_for_alert",
+      "backend_storage_flows_in_range",
+      "backend_storage_flows_per_window",
+      "backend_storage_get_alert",
+      "backend_storage_get_dataset_info",
+      "backend_storage_list_alerts",
+      "backend_storage_list_investigations",
+      "backend_storage_load_flows_with_labels",
+      "backend_storage_now_iso",
+      "backend_storage_py_dataframe",
+      "backend_storage_py_path",
+      "backend_storage_rationale_1",
+      "backend_storage_rationale_159",
+      "backend_storage_rationale_175",
+      "backend_storage_rationale_185",
+      "backend_storage_rationale_89",
+      "backend_storage_row_to_alert",
+      "backend_storage_save_analysis",
+      "backend_storage_save_investigation",
+      "backend_storage_set_alert_status",
+      "contextlib",
+      "json",
+      "row",
+      "sqlite3"
+    ],
+    "2": [
+      "backend_detector",
+      "backend_detector_add_windows",
+      "backend_detector_detect",
+      "backend_detector_merge_windows",
+      "backend_detector_py_dataframe",
+      "backend_detector_rationale_1",
+      "backend_detector_rationale_13",
+      "backend_detector_rationale_20",
+      "backend_detector_rationale_35",
+      "backend_detector_rationale_45",
+      "backend_detector_rationale_55",
+      "backend_detector_severity_label",
+      "backend_detector_window_stats",
+      "backend_init",
+      "backend_init_rationale_1",
+      "fixture",
+      "tests_conftest",
+      "tests_conftest_burst",
+      "tests_conftest_db",
+      "tests_conftest_make_flows",
+      "tests_conftest_rationale_14",
+      "tests_conftest_rationale_36",
+      "tests_conftest_stored_alert",
+      "tests_test_detector",
+      "tests_test_detector_test_consecutive_windows_merge_and_far_ones_do_not",
+      "tests_test_detector_test_empty_input",
+      "tests_test_detector_test_normal_traffic_has_no_alerts",
+      "tests_test_detector_test_port_spread_counts_only_service_ports",
+      "tests_test_detector_test_sample_files_produce_expected_alerts",
+      "tests_test_detector_test_value_above_threshold_alerts_with_evidence",
+      "tests_test_detector_test_value_equal_to_threshold_does_not_alert",
+      "timedelta"
+    ],
+    "3": [
+      "backend_data_loader",
+      "backend_data_loader_dataloaderror",
+      "backend_data_loader_load_flows",
+      "backend_data_loader_loadreport",
+      "backend_data_loader_parse_timestamps",
+      "backend_data_loader_py_dataframe",
+      "backend_data_loader_py_series",
+      "backend_data_loader_py_valueerror",
+      "backend_data_loader_rationale_1",
+      "backend_data_loader_rationale_42",
+      "backend_data_loader_rationale_55",
+      "backend_data_loader_rationale_69",
+      "io",
+      "pandas",
+      "pytest",
+      "tests_test_data_loader",
+      "tests_test_data_loader_test_afternoon_times_without_am_pm_are_read_as_pm",
+      "tests_test_data_loader_test_column_names_with_spaces_and_bad_rows",
+      "tests_test_data_loader_test_empty_file_raises",
+      "tests_test_data_loader_test_en_dash_in_labels_is_normalised",
+      "tests_test_data_loader_test_missing_columns_raise",
+      "tests_test_data_loader_test_sample_files_load",
+      "tests_test_data_loader_test_timestamps_with_seconds_are_supported"
+    ],
+    "4": [
+      "agent_tools",
+      "agent_tools_alert_or_error",
+      "agent_tools_count_distinct_ports",
+      "agent_tools_get_alert_details",
+      "agent_tools_ollama_tool_schemas",
+      "agent_tools_py_any",
+      "agent_tools_py_valueerror",
+      "agent_tools_rationale_1",
+      "agent_tools_rationale_135",
+      "agent_tools_rationale_28",
+      "agent_tools_rationale_50",
+      "agent_tools_rationale_71",
+      "agent_tools_run_tool",
+      "agent_tools_summarize_time_window",
+      "agent_tools_toolerror",
+      "tests_test_tools",
+      "tests_test_tools_test_only_the_selected_alert_can_be_queried",
+      "tests_test_tools_test_tools_return_facts_and_never_the_label",
+      "tests_test_tools_test_unknown_tools_and_bad_arguments_are_rejected"
+    ],
+    "5": [
+      "argparse",
+      "backend_config",
+      "backend_config_rationale_1",
+      "datetime",
+      "os",
+      "pathlib",
+      "platform",
+      "scripts_make_sample",
+      "scripts_make_sample_main",
+      "scripts_make_sample_minute_key",
+      "scripts_make_sample_rationale_1",
+      "scripts_make_sample_rationale_36",
+      "scripts_repeat_runs",
+      "scripts_repeat_runs_main",
+      "scripts_repeat_runs_rationale_1",
+      "streamlit_testing_v1",
+      "tests_test_app",
+      "tests_test_app_rationale_1",
+      "tests_test_app_test_detect_and_investigate_through_the_ui"
+    ],
+    "6": [
+      "altair",
+      "backend_data_loader_list_datasets",
+      "backend_data_loader_py_path",
+      "backend_data_loader_rationale_118",
+      "frontend_app",
+      "frontend_app_badge",
+      "frontend_app_bullet_list",
+      "frontend_app_over",
+      "frontend_app_rationale_1",
+      "frontend_app_rationale_56",
+      "frontend_app_show_step",
+      "streamlit",
+      "sys"
+    ]
+  },
+  "cohesion": {
+    "0": 0.08084163898117387,
+    "1": 0.12121212121212122,
+    "2": 0.1310483870967742,
+    "3": 0.18972332015810275,
+    "4": 0.18128654970760233,
+    "5": 0.14619883040935672,
+    "6": 0.15384615384615385
+  },
+  "gods": [
+    {
+      "id": "agent_investigator_investigate",
+      "label": "investigate()",
+      "degree": 22
+    },
+    {
+      "id": "backend_detector_detect",
+      "label": "detect()",
+      "degree": 22
+    },
+    {
+      "id": "backend_data_loader_load_flows",
+      "label": "load_flows()",
+      "degree": 18
+    },
+    {
+      "id": "backend_storage_connect",
+      "label": "connect()",
+      "degree": 15
+    },
+    {
+      "id": "backend_models_alert",
+      "label": "Alert",
+      "degree": 13
+    },
+    {
+      "id": "agent_investigator_validate_report",
+      "label": "validate_report()",
+      "degree": 12
+    },
+    {
+      "id": "tests_conftest_make_flows",
+      "label": "make_flows()",
+      "degree": 11
+    },
+    {
+      "id": "backend_storage_save_analysis",
+      "label": "save_analysis()",
+      "degree": 9
+    },
+    {
+      "id": "agent_tools_summarize_time_window",
+      "label": "summarize_time_window()",
+      "degree": 9
+    },
+    {
+      "id": "backend_data_loader_dataloaderror",
+      "label": "DataLoadError",
+      "degree": 8
+    }
+  ],
+  "surprises": [
+    {
+      "source": "test_empty_file_raises()",
+      "target": "DataLoadError",
+      "source_files": [
+        "tests/test_data_loader.py",
+        "backend/data_loader.py"
+      ],
+      "confidence": "INFERRED",
+      "relation": "uses",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories"
+    },
+    {
+      "source": "test_missing_columns_raise()",
+      "target": "DataLoadError",
+      "source_files": [
+        "tests/test_data_loader.py",
+        "backend/data_loader.py"
+      ],
+      "confidence": "INFERRED",
+      "relation": "uses",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories"
+    },
+    {
+      "source": "stored_alert()",
+      "target": "save_analysis()",
+      "source_files": [
+        "tests/conftest.py",
+        "backend/storage.py"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories; bridges separate communities"
+    },
+    {
+      "source": "main()",
+      "target": "investigate()",
+      "source_files": [
+        "scripts/repeat_runs.py",
+        "agent/investigator.py"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories; bridges separate communities"
+    },
+    {
+      "source": "test_agent_loop_runs_requested_tools()",
+      "target": "investigate()",
+      "source_files": [
+        "tests/test_investigator.py",
+        "agent/investigator.py"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories; peripheral node `test_agent_loop_runs_requested_tools()` unexpectedly reaches hub `investigate()`"
+    }
+  ],
+  "questions": [
+    {
+      "type": "bridge_node",
+      "question": "Why does `detect()` connect `Community 2` to `Community 1`, `Community 3`, `Community 5`, `Community 6`?",
+      "why": "High betweenness centrality (0.118) - this node is a cross-community bridge."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Community 0` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.08084163898117387 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `investigate()` connect `Community 0` to `Community 1`, `Community 4`, `Community 5`?",
+      "why": "High betweenness centrality (0.103) - this node is a cross-community bridge."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Community 1` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.12121212121212122 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `load_flows()` connect `Community 3` to `Community 2`, `Community 5`, `Community 6`?",
+      "why": "High betweenness centrality (0.071) - this node is a cross-community bridge."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Community 2` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.1310483870967742 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Community 5` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.14619883040935672 - nodes in this community are weakly interconnected."
+    }
+  ]
+}
